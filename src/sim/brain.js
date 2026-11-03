@@ -6,7 +6,7 @@ export const PARAMETERS = Object.freeze({ leak: 0.82, threshold: 1, refractorySt
 // One LIF unit per recorded neuron. All retained neuron-pair edges are used.
 // Model time is fixed at 20 ms per tick, independent of render frame rate.
 export class Brain {
-  constructor(buffer, annotations, manifest, seed = 42) {
+  constructor(buffer, annotations, manifest, seed = 42, options = {}) {
     const view = new DataView(buffer);
     this.n = view.getUint32(0, true);
     this.e = view.getUint32(4, true);
@@ -32,7 +32,7 @@ export class Brain {
     for (let i = 1; i <= this.n; i++) this.rows[i] += this.rows[i - 1];
     // Incoming absolute-weight normalization is a modeling assumption, not
     // a measured physiological synaptic efficacy. Negative weights retained.
-    for (let j = 0; j < this.e; j++) this.weights[j] *= PARAMETERS.synapticGain / Math.max(1, incoming[this.targets[j]]);
+    if (!options.rawSynapseCounts) for (let j = 0; j < this.e; j++) this.weights[j] *= PARAMETERS.synapticGain / Math.max(1, incoming[this.targets[j]]);
     this.v = new Float32Array(this.n);
     this.refractory = new Uint8Array(this.n);
     this.spikes = new Uint8Array(this.n);

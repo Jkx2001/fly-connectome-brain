@@ -1,0 +1,584 @@
+{
+  "schema": 1,
+  "parameters": {
+    "profile": "circuit-v1",
+    "stepMs": 0.2,
+    "frameMs": 20,
+    "restMv": -52,
+    "thresholdMv": -45,
+    "resetMv": -52,
+    "membraneTauMs": 20,
+    "synapseTauMs": 5,
+    "refractoryMs": 2.2,
+    "delayMs": 1.8,
+    "weightMvPerSynapse": 0.275,
+    "maxInputHz": 150,
+    "inputWeightMv": 68.75,
+    "idleToleranceMv": 1e-8
+  },
+  "annotationSource": {
+    "repository": "https://github.com/flyconnectome/flywire_annotations",
+    "release": "v2.1.0",
+    "commit": "ebd66db2596fcc39c6950fb54ea3efa00f7fe8a0",
+    "path": "supplemental_files/Supplemental_file1_neuron_annotations.tsv",
+    "sha256": "30be6c73975a70c56d930e27911f36455d3886e15abf383b78edd2a5d679e0b6",
+    "canonicalOrderSha256": "6a6b3759e635f0f35a677d169052362131ec61d95f55919298b55c43fce4e719",
+    "citations": [
+      "https://doi.org/10.1038/s41586-024-07686-5",
+      "https://doi.org/10.1038/s41586-024-07558-y"
+    ]
+  },
+  "researchModel": {
+    "repository": "https://github.com/philshiu/Drosophila_brain_model",
+    "commit": "91bdd1e7dcf193f3e7ca5a8933497fcef63b7960",
+    "path": "model.py",
+    "sha256": "fc45837d7122c6ce2a7f3f2f23c515992e4b232aadb919efabb72337fac88e4e",
+    "adaptations": [
+      "0.2 ms timestep (reference Brian2 default is 0.1 ms)",
+      "Event-sparse state with 1e-8 mV idle tolerance",
+      "FlyWire v783 packaged graph rather than reference connectivity files",
+      "DM1-only external odor input; no visual, wind or heading encoders",
+      "Artificial DNa02 steering and provisional exact-cell-type DNp09 walking decoder",
+      "No Brian2 equivalence or behavioral reproduction claimed",
+      "Unambiguous literature known_nt overrides conflicting transmitter predictions"
+    ]
+  },
+  "graph": {
+    "repository": "https://github.com/snedea/flybrain",
+    "commit": "9191824d17871b7851645782d53d23f213ddb938",
+    "dataset": "FlyWire FAFB v783",
+    "sha256": "fbf8d440ca1207c7573e1acdd2366f9d0beb9b533c1710f21681264f81b1cc49",
+    "paper": "https://doi.org/10.1038/s41586-024-07558-y",
+    "binarySha256": "ce790be1bda350802ef1c8df6cefc0bd816f22b4803eb917d1dd336fa708505e"
+  },
+  "results": [
+    {
+      "seed": 17,
+      "condition": "no-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 2.2823361999999996,
+      "totalSpikeEvents": 0,
+      "maxSpikingNeuronsPerFrame": 0,
+      "meanHz": {
+        "ORN_DM1": 0,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 0,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 0
+      }
+    },
+    {
+      "seed": 17,
+      "condition": "left-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 438.38234096,
+      "totalSpikeEvents": 300414,
+      "maxSpikingNeuronsPerFrame": 6644,
+      "meanHz": {
+        "ORN_DM1": 46.794117647058826,
+        "DM1_lPN": 367,
+        "LHAD1b2": 92.11111111111111,
+        "DNa02": 44,
+        "DNp09": 1,
+        "hDeltaC": 1.3333333333333333,
+        "PFL3": 38.583333333333336
+      },
+      "DNa02Hz": {
+        "left": 88,
+        "right": 0
+      }
+    },
+    {
+      "seed": 17,
+      "condition": "right-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 688.76188164,
+      "totalSpikeEvents": 298110,
+      "maxSpikingNeuronsPerFrame": 6595,
+      "meanHz": {
+        "ORN_DM1": 44.705882352941174,
+        "DM1_lPN": 362,
+        "LHAD1b2": 91.33333333333333,
+        "DNa02": 42,
+        "DNp09": 1,
+        "hDeltaC": 1.2380952380952381,
+        "PFL3": 38.166666666666664
+      },
+      "DNa02Hz": {
+        "left": 84,
+        "right": 0
+      }
+    },
+    {
+      "seed": 17,
+      "condition": "bilateral-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 398.70573468000003,
+      "totalSpikeEvents": 303164,
+      "maxSpikingNeuronsPerFrame": 6654,
+      "meanHz": {
+        "ORN_DM1": 91.5,
+        "DM1_lPN": 389,
+        "LHAD1b2": 92.11111111111111,
+        "DNa02": 47,
+        "DNp09": 1,
+        "hDeltaC": 1.3333333333333333,
+        "PFL3": 37.416666666666664
+      },
+      "DNa02Hz": {
+        "left": 88,
+        "right": 6
+      }
+    },
+    {
+      "seed": 17,
+      "condition": "disconnected-left",
+      "durationSeconds": 0.5,
+      "mode": "disconnected",
+      "millisecondsPerFrame": 1.5568487999998615,
+      "totalSpikeEvents": 1591,
+      "maxSpikingNeuronsPerFrame": 34,
+      "meanHz": {
+        "ORN_DM1": 46.794117647058826,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 0,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 0
+      }
+    },
+    {
+      "seed": 17,
+      "condition": "silenced-ORN-left",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 0.8846465199999511,
+      "totalSpikeEvents": 1591,
+      "maxSpikingNeuronsPerFrame": 34,
+      "meanHz": {
+        "ORN_DM1": 46.794117647058826,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 0,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 0
+      }
+    },
+    {
+      "seed": 17,
+      "condition": "DNa02-left",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 103.82179663999996,
+      "totalSpikeEvents": 4679,
+      "maxSpikingNeuronsPerFrame": 175,
+      "meanHz": {
+        "ORN_DM1": 0,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 121,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 242,
+        "right": 0
+      }
+    },
+    {
+      "seed": 17,
+      "condition": "DNa02-right",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 128.44456780000007,
+      "totalSpikeEvents": 6521,
+      "maxSpikingNeuronsPerFrame": 256,
+      "meanHz": {
+        "ORN_DM1": 0,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 136,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 272
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "no-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 0.5545537599999807,
+      "totalSpikeEvents": 0,
+      "maxSpikingNeuronsPerFrame": 0,
+      "meanHz": {
+        "ORN_DM1": 0,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 0,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 0
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "left-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 414.1093434400001,
+      "totalSpikeEvents": 298829,
+      "maxSpikingNeuronsPerFrame": 6674,
+      "meanHz": {
+        "ORN_DM1": 46.64705882352941,
+        "DM1_lPN": 365,
+        "LHAD1b2": 91.88888888888889,
+        "DNa02": 42,
+        "DNp09": 1,
+        "hDeltaC": 1.1428571428571428,
+        "PFL3": 38.166666666666664
+      },
+      "DNa02Hz": {
+        "left": 82,
+        "right": 2
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "right-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 438.1960751600002,
+      "totalSpikeEvents": 299710,
+      "maxSpikingNeuronsPerFrame": 6624,
+      "meanHz": {
+        "ORN_DM1": 42.911764705882355,
+        "DM1_lPN": 363,
+        "LHAD1b2": 91.77777777777777,
+        "DNa02": 40,
+        "DNp09": 1,
+        "hDeltaC": 1.3333333333333333,
+        "PFL3": 37.583333333333336
+      },
+      "DNa02Hz": {
+        "left": 80,
+        "right": 0
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "bilateral-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 422.7539643199998,
+      "totalSpikeEvents": 303793,
+      "maxSpikingNeuronsPerFrame": 6683,
+      "meanHz": {
+        "ORN_DM1": 89.55882352941177,
+        "DM1_lPN": 388,
+        "LHAD1b2": 93.22222222222223,
+        "DNa02": 42,
+        "DNp09": 1,
+        "hDeltaC": 1.2380952380952381,
+        "PFL3": 37.333333333333336
+      },
+      "DNa02Hz": {
+        "left": 82,
+        "right": 2
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "disconnected-left",
+      "durationSeconds": 0.5,
+      "mode": "disconnected",
+      "millisecondsPerFrame": 1.115697280000313,
+      "totalSpikeEvents": 1586,
+      "maxSpikingNeuronsPerFrame": 33,
+      "meanHz": {
+        "ORN_DM1": 46.64705882352941,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 0,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 0
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "silenced-ORN-left",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 1.543315280000097,
+      "totalSpikeEvents": 1586,
+      "maxSpikingNeuronsPerFrame": 33,
+      "meanHz": {
+        "ORN_DM1": 46.64705882352941,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 0,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 0
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "DNa02-left",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 38.48673048000026,
+      "totalSpikeEvents": 1839,
+      "maxSpikingNeuronsPerFrame": 160,
+      "meanHz": {
+        "ORN_DM1": 0,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 78,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 156,
+        "right": 0
+      }
+    },
+    {
+      "seed": 42,
+      "condition": "DNa02-right",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 179.05384995999978,
+      "totalSpikeEvents": 5188,
+      "maxSpikingNeuronsPerFrame": 253,
+      "meanHz": {
+        "ORN_DM1": 0,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 118,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 236
+      }
+    },
+    {
+      "seed": 91,
+      "condition": "no-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 0.9521680399996694,
+      "totalSpikeEvents": 0,
+      "maxSpikingNeuronsPerFrame": 0,
+      "meanHz": {
+        "ORN_DM1": 0,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 0,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 0
+      }
+    },
+    {
+      "seed": 91,
+      "condition": "left-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 444.65719524000014,
+      "totalSpikeEvents": 300210,
+      "maxSpikingNeuronsPerFrame": 6605,
+      "meanHz": {
+        "ORN_DM1": 47.970588235294116,
+        "DM1_lPN": 367,
+        "LHAD1b2": 92.33333333333333,
+        "DNa02": 41,
+        "DNp09": 1,
+        "hDeltaC": 1.0476190476190477,
+        "PFL3": 37.583333333333336
+      },
+      "DNa02Hz": {
+        "left": 82,
+        "right": 0
+      }
+    },
+    {
+      "seed": 91,
+      "condition": "right-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 558.8370407599997,
+      "totalSpikeEvents": 298141,
+      "maxSpikingNeuronsPerFrame": 6598,
+      "meanHz": {
+        "ORN_DM1": 42.76470588235294,
+        "DM1_lPN": 358,
+        "LHAD1b2": 91.88888888888889,
+        "DNa02": 41,
+        "DNp09": 1,
+        "hDeltaC": 1.3333333333333333,
+        "PFL3": 37.583333333333336
+      },
+      "DNa02Hz": {
+        "left": 78,
+        "right": 4
+      }
+    },
+    {
+      "seed": 91,
+      "condition": "bilateral-odor",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 956.9698687600007,
+      "totalSpikeEvents": 303702,
+      "maxSpikingNeuronsPerFrame": 6692,
+      "meanHz": {
+        "ORN_DM1": 90.73529411764706,
+        "DM1_lPN": 389,
+        "LHAD1b2": 92.88888888888889,
+        "DNa02": 39,
+        "DNp09": 1,
+        "hDeltaC": 1.3333333333333333,
+        "PFL3": 37.5
+      },
+      "DNa02Hz": {
+        "left": 76,
+        "right": 2
+      }
+    },
+    {
+      "seed": 91,
+      "condition": "disconnected-left",
+      "durationSeconds": 0.5,
+      "mode": "disconnected",
+      "millisecondsPerFrame": 3.1055563600000458,
+      "totalSpikeEvents": 1631,
+      "maxSpikingNeuronsPerFrame": 33,
+      "meanHz": {
+        "ORN_DM1": 47.970588235294116,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 0,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 0
+      }
+    },
+    {
+      "seed": 91,
+      "condition": "silenced-ORN-left",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 1.8073761599999854,
+      "totalSpikeEvents": 1631,
+      "maxSpikingNeuronsPerFrame": 33,
+      "meanHz": {
+        "ORN_DM1": 47.970588235294116,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 0,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 0
+      }
+    },
+    {
+      "seed": 91,
+      "condition": "DNa02-left",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 424.83469456000023,
+      "totalSpikeEvents": 4735,
+      "maxSpikingNeuronsPerFrame": 167,
+      "meanHz": {
+        "ORN_DM1": 0,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 132,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 264,
+        "right": 0
+      }
+    },
+    {
+      "seed": 91,
+      "condition": "DNa02-right",
+      "durationSeconds": 0.5,
+      "mode": "measured",
+      "millisecondsPerFrame": 311.41123515999993,
+      "totalSpikeEvents": 6438,
+      "maxSpikingNeuronsPerFrame": 215,
+      "meanHz": {
+        "ORN_DM1": 0,
+        "DM1_lPN": 0,
+        "LHAD1b2": 0,
+        "DNa02": 144,
+        "DNp09": 0,
+        "hDeltaC": 0,
+        "PFL3": 0
+      },
+      "DNa02Hz": {
+        "left": 0,
+        "right": 288
+      }
+    }
+  ]
+}

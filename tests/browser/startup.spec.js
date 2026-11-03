@@ -8,6 +8,10 @@ test('tabletop loads, advances, pauses, changes wiring, and exports a replayable
   await expect(page.locator('#loading')).toBeHidden();
   await expect(page.locator('#run-label')).toHaveText('SIMULATION LIVE');
   await expect(page.locator('#spike-count')).not.toHaveText('—');
+  await expect(page.locator('#profile')).toHaveValue('circuit');
+  await expect(page.locator('#light')).toBeDisabled();
+  await page.locator('#profile').selectOption('legacy');
+  await expect(page.locator('#light')).toBeEnabled();
   await page.locator('#play').click();
   await expect(page.locator('#run-label')).toHaveText('PAUSED');
   const before = await page.locator('#clock').innerText();
@@ -60,4 +64,27 @@ test('a failed entry module leaves a visible explanation instead of an empty pag
   await page.goto('./');
   await expect(page.locator('#boot-message')).toBeVisible();
   await expect(page.locator('#boot-message')).toContainText('application could not load');
+});
+
+test('circuit lab isolates named steering interventions and exports a replayable trial', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('#loading')).toBeHidden();
+  await expect(page.locator('#profile')).toHaveValue('circuit');
+  await expect(page.locator('#light')).toBeDisabled();
+  await expect(page.locator('.circuit-status')).toContainText('NOT VALIDATED');
+  await page.locator('#probe-left').click();
+  await expect(page.locator('#probe-note')).toContainText('intervention');
+  await expect.poll(async () => Number.parseFloat(await page.locator('#dn-left-hz').innerText())).toBeGreaterThan(0);
+  if ((await page.locator('#play').innerText()).includes('Pause')) await page.locator('#play').click();
+  await expect(page.locator('#run-label')).toHaveText('PAUSED');
+  const promise=page.waitForEvent('download'); await page.locator('#export').click();
+  await (await promise).saveAs('/tmp/fly-table-circuit-run.json');
+  const run=JSON.parse(readFileSync('/tmp/fly-table-circuit-run.json'));
+  expect(run.profile).toBe('circuit');expect(run.schema).toBe(2);
+  expect(run.world.food).toHaveLength(0);expect(run.actions[0].type).toBe('clear');
+  expect(run.actions[1].side).toBe('left');
+  await page.locator('#probe-right').click();
+  await expect.poll(async () => Number.parseFloat(await page.locator('#dn-right-hz').innerText())).toBeGreaterThan(0);
+  await page.locator('#play').click();
+  await page.screenshot({path:'/tmp/fly-table-circuit-lab.png',fullPage:true});
 });

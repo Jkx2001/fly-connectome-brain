@@ -2,6 +2,16 @@
 
 A browser POC with an interactive 3D tabletop and the full packaged FlyWire FAFB v783 graph: 139,255 neural units and 2,698,236 directed neuron-pair edges. Simulation runs locally in a Web Worker. No LLM, trained controller, or scripted food-seeking is used.
 
+## Circuit fidelity checkpoint
+
+The default **Circuit lab** profile uses named DM1 ORNs and DNa02 neurons, with dynamics adapted from the Shiu–Spiller research code. It retains the full packaged graph. The old gain-normalized model remains available as **Legacy exploratory model** for comparison.
+
+**Odor-guided food seeking is still unvalidated.** Three-seed causal probes demonstrate ORN-to-projection-neuron propagation, lost under disconnection or source-output silencing. They also show a negative result: moving odor from left to right does not reverse the dominant DNa02 response. There is no hunger model, learned food value, or hidden target-seeking rule. The slower or stationary fly in circuit mode should not be interpreted as successful natural behavior.
+
+The circuit profile isolates odor inputs; light, touch, and taste controls are disabled as neural inputs. Direct DNa02 pulse buttons reset the trial and remove food before stimulating a named steering neuron. Use Reset to return food to the tabletop. These interventions test a provisional body decoder, not odor attraction. Full-graph circuit computation can run substantially slower than wall time; the performance label reports the actual compute cost.
+
+See [the circuit audit and assumptions](docs/CIRCUIT-FIDELITY.md) and [all 24 diagnostic trials](docs/olfaction-results.json). Run `npm run probe:olfaction` to repeat the probe matrix. The passive dynamics and intervention tests do not establish equivalence to Brian2 or reproduce published behavioral results.
+
 ## Run
 
 Requires Node.js 22.12+ (tested with Node 24).
@@ -27,11 +37,11 @@ For a production server, run `npm run build` then `npm run preview`. Deploy the 
 
 ## What is measured and what is modeled
 
-The graph is copied from [snedea/flybrain](https://github.com/snedea/flybrain/tree/9191824d17871b7851645782d53d23f213ddb938), pinned at commit `9191824d17871b7851645782d53d23f213ddb938`. The manifest records the source and compressed/decompressed SHA-256 hashes. Neuron pool membership comes from the corresponding `classification.csv.gz` and canonical ordering in `neurons.csv.gz`. All packaged nodes and edges are retained. This is not an independent audit of the FlyWire reconstruction or upstream packaging.
+The baseline packaged graph is copied from [snedea/flybrain](https://github.com/snedea/flybrain/tree/9191824d17871b7851645782d53d23f213ddb938), pinned at commit `9191824d17871b7851645782d53d23f213ddb938`. The manifest records the source and compressed/decompressed SHA-256 hashes. Neuron pool membership comes from the corresponding `classification.csv.gz` and canonical ordering in `neurons.csv.gz`. All packaged nodes and edges are retained. This is not an independent audit of the FlyWire reconstruction or upstream packaging.
 
 Underlying research: Dorkenwald et al., *Neuronal wiring diagram of an adult brain*, Nature 634, 124–138 (2024), [doi:10.1038/s41586-024-07558-y](https://doi.org/10.1038/s41586-024-07558-y).
 
-Important modeling assumptions:
+Legacy exploratory profile assumptions (see the circuit audit above for the default profile):
 
 - All units use identical LIF parameters. Incoming signed synapse-count weights are normalized by total incoming absolute weight, with gain 18. Transmitter signs inherit upstream simplifications, including excitatory glutamate.
 - Odor is an analytic distance-decaying field; walls do not occlude it. Left/right samples drive broad annotated olfactory pools with seeded random pulses. No glomerulus-specific receptor model is supplied.

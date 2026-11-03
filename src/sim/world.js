@@ -85,6 +85,6 @@ export class World {
   }
 }
 
-export function decodeMotor({ left, right }) {
-  return { speed: clamp((left + right) / 0.24, 0, 1) * 0.9, turn: clamp((right - left) / 0.08, -1, 1) * 2.5 };
+export function decodeMotor({ left, right, forward }) {
+  return { speed: clamp(forward === undefined ? (left + right) / 0.24 : forward, 0, 1) * 0.9, turn: clamp((right - left) / 0.08, -1, 1) * 2.5 };
 }
